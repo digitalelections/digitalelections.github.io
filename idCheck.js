@@ -50,8 +50,8 @@ let checkId = function() {
             alert('Only citizens are allowed to vote')
           return null;    
         }
-            
-        window.location.href = "https://digitalelections.github.io/Home";   
+
+        window.location.href = "https://digitalelections.github.io/Home" ;
     } else {
         alert("Invalid details entered"); 
     }
