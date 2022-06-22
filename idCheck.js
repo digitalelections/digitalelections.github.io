@@ -51,7 +51,7 @@ let checkId = function() {
           return null;    
         }
             
-        window.location.href = "graphs.html";   
+        window.location.href = "https://digitalelections.github.io/Home";   
     } else {
         alert("Invalid details entered"); 
     }
