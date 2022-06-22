@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width">
-
+  	<script type="text/javascript" src="idCheck.js"></script>
 </head>
 
 
@@ -85,7 +85,7 @@
 
 	<form method="post">
       <div class="imgcontainer">
-        <img src="Img/OIP.jpg" alt="Avatar" class="avatar">
+        <img src="img/OIP.jpg" alt="Avatar" class="avatar">
       </div>
     
       <div class="container">
@@ -95,27 +95,10 @@
         <label for="psw"><b>National ID</b></label>
         <input id="nid" type="text" placeholder="Enter National ID" name="psw" required>
     
-        <button onclick="checkId()" type="submit">Register</button>
+        <button onclick="checkId()" >Register</button>
       </div>
     </form>
 	
-	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-	<script type="text/javascript" src="idCheck.js"></script>
-    <script type="text/javascript">
-      // Your web app's Firebase configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyDYjcGhi4yNrncn9tsutOMLYUK9a_F4H2c",
-          authDomain: "b4now-d4e6c.firebaseapp.com",
-          projectId: "b4now-d4e6c",
-          storageBucket: "b4now-d4e6c.appspot.com",
-          messagingSenderId: "707810219534",
-          appId: "1:707810219534:web:fcaf979b53bb5743c70e5f"
-        };
-      // Initialize Firebase
-      const dataBaseInit = firebase.initializeApp(firebaseConfig);
-      console.log(dataBaseInit);
-      //getPoliticalParties(); 
-    </script>
+
 </body>
 </html>
