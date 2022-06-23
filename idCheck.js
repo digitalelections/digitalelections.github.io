@@ -24,7 +24,7 @@ let checkId = function() {
                     ver_id.length + 
                     ' digits were given.'
             );   
-            return; 
+            return false; 
         }
         
         var year = id[0] + id[1]; 
@@ -43,18 +43,21 @@ let checkId = function() {
         else if (parseInt(gender, 10) >= 5 && parseInt(gender, 10) < 9) sGender = 'Male'; 
         else {
             alert("invalid gender detected: Should be 'Male' or 'Female'."); 
-            return null; 
+            return false; 
         }
         
         if (parseInt(citizen, 10) != 0) {
             alert('Only citizens are allowed to vote')
-          return null;    
+          return false;     
         }
 
-        window.location.href = "https://digitalelections.github.io/Home" ;
+        window.location.href = "Home.html" ;
+
+    
     } else {
         alert("Invalid details entered"); 
     }
+
 }
 
 

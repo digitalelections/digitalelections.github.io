@@ -1,14 +1,13 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width">
-  	<script type="text/javascript" src="idCheck.js"></script>
 </head>
 
 
 <style>
 	body { background-color: #ffffff; }
     /* Bordered form */
-    form {
+    #form {
       border: 3px solid #f1f1f1;
     }
     
@@ -83,9 +82,9 @@
 
 <body>
 
-	<form method="post">
+	<div id="form">
       <div class="imgcontainer">
-        <img src="Img/OIP.jpg" alt="Avatar" class="avatar">
+        <img src="img/OIP.jpg" alt="Avatar" class="avatar">
       </div>
     
       <div class="container">
@@ -95,10 +94,10 @@
         <label for="psw"><b>National ID</b></label>
         <input id="nid" type="text" placeholder="Enter National ID" name="psw" required>
     
-        <button onclick="checkId()" >Register</button>
+        <button id="reg" onclick="checkId()">Register</button>
       </div>
-    </form>
+    </div>
 	
-
+  	<script type="text/javascript" src="idCheck.js"></script>
 </body>
 </html>
