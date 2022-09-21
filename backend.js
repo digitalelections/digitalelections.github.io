@@ -1,27 +1,58 @@
 
 
 
-let createUser = function(username, id) {
-    firebase.firestore().collection('politicalParties').get().then((querySnapshot) => {
+let createUser = function(id) {
+    var voted = false; 
+    firebase.firestore().collection('voters').get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             var data = doc.data(); 
             
-            alert('Got user: ' + data); 
+            if (id === data.id) {
+				     //alert(id + ":" + name + ":" + votes); 
+                document.getElementById("tmp").innerText = data.id; 
+                //document.getElementById("webID").innerText = id;
+                document.getElementById("myForm").style.display = "block";
+                voted = true; 
+                return false;
+			}
         });
+	
+    if (!voted) {
+        firebase.firestore().collection("voters").add({
+        id: id
+        })
+        .then(() => {
+        if (!voted) window.location.href = "Home.html" ; 
+        })
+        .catch((error) => {
+                Alert("Error writing document: " + error);
+        });
+    }
+
     }); 
+
+		return true; 
 }
 
 
+
+
 let createPost = function(id, name, votes, logo) {
- //g id="ppic" src="https://toppng.com/uploads/preview/anc-vector-logo-free-download-11573983310jtuykgs8tl.png"/
- let img = document.createElement('img');
- let anchor = document.createElement('a');
- anchor.onclick = function() {
-     //alert(id + ":" + name + ":" + votes); 
-     ynd = prompt("Do you want to vote for the " + name + " party? (enter yes or no)");
-     let response = function(result) {
-         if (result.toLowerCase() == 'yes') {
-            
+    var layout = document.getElementById('main'); 
+    let img = document.createElement('img');
+    let anchor = document.createElement('a');
+    var outer_div = document.createElement('div'); 
+    outer_div.className = "post " + pickSize(); 
+
+
+    anchor.onclick = function() {
+        //alert(id + ":" + name + ":" + votes); 
+        document.getElementById("tmp").innerText = name;
+        document.getElementById("webID").innerText = id;
+        document.getElementById("myForm").style.display = "block";
+
+        var btn = document.getElementById("voteBtn"); 
+        btn.onclick = function() {
             var docRef = firebase.firestore().collection('politicalParties').doc(id);
             
             docRef.get().then((doc) => {
@@ -43,21 +74,38 @@ let createPost = function(id, name, votes, logo) {
             }).catch((error) => {
                 alert("Error getting document:" + error);
                 console.log("Error getting document:", error);
-            });  
-            
-            
-         }
-     }
-     
-     response(ynd); 
- };
- 
- img.className = 'ppic'; 
- img.src = logo; 
- 
- anchor.appendChild(img); 
- document.body.appendChild(anchor); 
+            }); 
+        }
+    }; 
+
+
+    img.src = logo; 
+    img.className = "image";    
+    anchor.appendChild(img);
+    outer_div.appendChild(anchor); 
+
+    layout.appendChild(outer_div);
 }
+
+
+function randomInteger(min, max) {
+    return Math.floor(min + Math.random()*(max - min + 1))
+}
+
+function pickSize() {
+    var size = randomInteger(1,3); 
+    /*switch(size) {
+        case 1:
+            return 'h-stretch'; 
+        case 2:
+            return 'big-stretch'; 
+        default:
+            return ""; 
+    }*/
+
+    return '';
+}
+
 
 let getPoliticalParties = function() {
 	const ref = firebase.firestore().collection('politicalParties');
